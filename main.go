@@ -5,6 +5,7 @@ import (
 	"dumbmerch/pkg/mysql"
 	"dumbmerch/routes"
 	"fmt"
+	"os"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -26,6 +27,9 @@ func main() {
 
 	e.Static("/uploads", "./uploads")
 
-	fmt.Println("server running localhost:5000")
-	e.Logger.Fatal(e.Start("localhost:5000"))
+	var port = os.Getenv("PORT")
+	fmt.Println("server running localhost:" + port)
+	e.Logger.Fatal(e.Start(":" + port))
+	// fmt.Println("server running localhost:5000")
+	// e.Logger.Fatal(e.Start("localhost:5000"))
 }
